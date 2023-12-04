@@ -40,7 +40,7 @@ public class testRabbit {
 
             JsonObject mensajeRecibido = servicioRabbitMQ.consumer(cola1);
 
-            System.out.println(mensajeRecibido.getAsString());
+            //AQUI PON TU LOGICA PARA DESESTRUCTURAR EL JSON
 
         } catch (Exception ex) {
             System.out.println(ex);

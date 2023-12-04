@@ -1,5 +1,6 @@
 package service;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.rabbitmq.client.*;
 import interfaz.IServicioRabbitMQ;
@@ -14,6 +15,7 @@ public class ServicioRabbitMQ implements IServicioRabbitMQ {
 
     /**
      * Creación de instancia del servicio.
+     *
      * @param host host en el cual se alojará RabbitMQ, recomendado localhost
      */
     public ServicioRabbitMQ(String host) {
@@ -76,9 +78,19 @@ public class ServicioRabbitMQ implements IServicioRabbitMQ {
             // Espera un tiempo para que el consumidor pueda procesar mensajes
             Thread.sleep(5000);
 
+            // Construye un JsonObject con la lista de mensajes recibidos
+            JsonArray mensajesArray = new JsonArray();
+            for (String mensaje : listaMensajesRecibidos) {
+                mensajesArray.add(mensaje);
+            }
+
+            JsonObject resultado = new JsonObject();
+            resultado.add("mensajes", mensajesArray);
+
             // Imprime la lista de mensajes recibidos
             System.out.println("Lista de Mensajes Recibidos: " + listaMensajesRecibidos);
 
+            return resultado;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,6 +99,7 @@ public class ServicioRabbitMQ implements IServicioRabbitMQ {
 
     /**
      * Crea una cola.
+     *
      * @param nombre JsonObject con (nombreCola).
      */
     @Override //✅
