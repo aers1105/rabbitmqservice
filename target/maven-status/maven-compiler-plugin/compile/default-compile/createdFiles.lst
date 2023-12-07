@@ -1,3 +1,2 @@
 service\ServicioRabbitMQ.class
 interfaz\IServicioRabbitMQ.class
-test\testRabbit.class

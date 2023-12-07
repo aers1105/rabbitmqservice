@@ -8,7 +8,7 @@ public interface IServicioRabbitMQ {
 
     JsonObject consumer(JsonObject nombre) throws Exception;
 
-    void createQueue(JsonObject nombre);
+    void createQueue(JsonObject nombre)throws Exception;
 
-    void deleteQueue(JsonObject nombre);
+    void deleteQueue(JsonObject nombre)throws Exception;
 }
