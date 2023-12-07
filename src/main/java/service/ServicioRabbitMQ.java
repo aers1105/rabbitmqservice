@@ -119,4 +119,25 @@ public class ServicioRabbitMQ implements IServicioRabbitMQ {
         }
 
     }
+
+    /**
+     * Elimina una cola.
+     *
+     * @param nombre JsonObject con (nombreCola).
+     */
+    @Override //✅
+    public void deleteQueue(JsonObject nombre) {
+        try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
+            // Convierte el JsonObject a un objeto Java
+            String nombreCola = nombre.get("nombreCola").getAsString();
+            // Elimina la cola
+            channel.queueDelete(nombreCola);
+
+            System.out.println("La cola '" + nombreCola + "' ha sido eliminada con éxito.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

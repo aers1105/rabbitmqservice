@@ -10,4 +10,5 @@ public interface IServicioRabbitMQ {
 
     void createQueue(JsonObject nombre);
 
+    void deleteQueue(JsonObject nombre);
 }
